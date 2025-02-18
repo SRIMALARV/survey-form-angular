@@ -1,0 +1,16 @@
+<h3>Response Details</h3>
+<div class="containerBox" *ngIf="responseData">
+    <button class="back-btn" (click)="goBack()">Back</button>
+  
+    <div id="response-details">
+      <div *ngFor="let answer of responseData.responses; let i = index">
+        <p><strong>Question {{ i + 1 }}:</strong> {{ answer.questionId }}</p>
+        <p><strong>Answer:</strong> {{ getFormattedAnswer(answer.answer) }}</p>
+
+        <hr/>
+      </div>
+    </div>
+  </div>
+  
+ 
+  

@@ -2,13 +2,13 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Form } from '../models/Form.model'; 
-import { environment } from '../../environments/environment';
+import { environment } from '../../environments/environment.development'; 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserApiService {
-   private API_BASE_URL = "http://localhost:8080";
+   private API_BASE_URL = environment.API_BASE_URL;
 
   constructor(private http:HttpClient) { }
 

@@ -1,0 +1,35 @@
+h3 {
+    margin-top: 120px;
+    margin-left: 40%;
+}
+
+.containerBox {
+    max-width: 600px;
+    margin: auto;
+    margin-top: 30px;
+    margin-bottom: 60px;
+    padding: 20px;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+    background-color: white;
+}
+
+#response-details {
+    text-align: left;
+}
+
+.back-btn {
+    position: absolute;
+    left: 10px;
+    top: 130px;
+}
+
+.back-btn {
+    margin-left: 5px;
+    background-color: black;
+    border-radius: 0;
+    color: white;
+    padding: 5px 10px;
+    font-family: 'Poppins', sans-serif;
+}

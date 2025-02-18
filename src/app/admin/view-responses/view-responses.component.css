@@ -80,6 +80,7 @@ button,
     justify-content: space-evenly;
     align-items: center;
     background: linear-gradient(to bottom, #e8eff3, #e8f3f9);
+    padding-top: 15px;
 }
 
 

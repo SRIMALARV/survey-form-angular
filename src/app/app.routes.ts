@@ -6,14 +6,14 @@ export const routes: Routes = [
   { path: '', component: LoginComponent }, 
   { path: 'admin',
     loadChildren: () => import('./admin/admin.module').then(m => m.AdminModule),
-   // canActivate: [AuthGuard], 
-   // data: { role: 'admin' }
-   }, 
+    // canActivate: [AuthGuard], 
+    // data: { role: 'admin' } 
+  }, 
   { path: 'user', 
     loadChildren: () => import('./user/user.module').then(m => m.UserModule),
-   // canActivate: [AuthGuard], 
-   // data: { role: 'user' } 
-  },  
+    // canActivate: [AuthGuard], 
+    // data: { role: 'user' }
+   },  
   { path: '**', redirectTo: '' }  
 ];
 

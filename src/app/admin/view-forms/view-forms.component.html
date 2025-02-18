@@ -1,6 +1,5 @@
 <div>
     <h1>View Forms</h1>
-    <a [routerLink]="['view-responses',12]">viewresp</a>
     <table>
       <thead>
         <tr>
@@ -23,7 +22,7 @@
             <ng-template #loading>Loading...</ng-template>
           </td>
           <td>
-            <button [routerLink]="['view-responses',form.id]" class="approve-btn">View</button>
+            <button [routerLink]="['/admin/view-responses',form.id]" class="approve-btn">View</button>
             <button class="delete" (click)="onDelete(form.id, form.name)" class="reject-btn">Delete</button>
           </td>
         </tr>

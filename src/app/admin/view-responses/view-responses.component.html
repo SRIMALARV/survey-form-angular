@@ -7,7 +7,7 @@
       <p>Rejected: {{ rejectedResponses }}</p>
     </div>
   
-    <!-- <button class="back-btn" (click)="window.history.back()">Back</button> -->
+    <button class="back-btn" (click)="goBack()">Back</button>
   
     <table>
       <thead>
@@ -21,7 +21,7 @@
       <tbody>
         <tr *ngFor="let response of responses">
           <td>{{ response.id }}</td>
-          <td><button class="view-btn" >View</button></td>
+          <td><button class="view-btn" [routerLink]="['/admin/responses', response.id]">View</button></td>
           <td>{{ response.status || 'Pending' }}</td>
           <td>
             <button class="approve-btn" *ngIf="response.id"  (click)="updateStatus(response.id, 'Approved')">Approve</button>

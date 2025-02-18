@@ -1,14 +1,14 @@
 import { Component } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, RouterLink } from '@angular/router';
 import { AdminApiService } from '../admin-api.service';
 import Swal from 'sweetalert2';  
 import { Response } from '../../models/Response.model';
-import { CommonModule } from '@angular/common';
+import { CommonModule, Location } from '@angular/common';
 
 @Component({
   selector: 'app-view-responses',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, RouterLink],
   templateUrl: './view-responses.component.html',
   styleUrl: './view-responses.component.css'
 })
@@ -19,16 +19,16 @@ export class ViewResponsesComponent {
   approvedResponses = 0;
   rejectedResponses = 0;
 
-  constructor(private route: ActivatedRoute, private apiService: AdminApiService) {}
+  constructor(private route: ActivatedRoute, private apiService: AdminApiService, private location:Location) {}
+
+  goBack(): void {
+    this.location.back();
+  }
 
   ngOnInit(): void {
     this.route.paramMap.subscribe(params => {
       this.formId = params.get('formId') as string; 
-      if (this.formId) {
-        this.loadResponses();
-      } else {
-        console.error('Form ID is missing in the route.');
-      }
+      this.loadResponses();
     });
   }
 

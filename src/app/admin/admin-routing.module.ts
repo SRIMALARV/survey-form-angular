@@ -4,6 +4,7 @@ import { AdminDashboardComponent } from './admin-dashboard/admin-dashboard.compo
 import { ViewFormsComponent } from './view-forms/view-forms.component';
 import { CreateFormComponent } from './create-form/create-form.component';
 import { ViewResponsesComponent } from './view-responses/view-responses.component';
+import { ResponsesComponent } from './responses/responses.component';
 
 const routes: Routes = [
   {
@@ -11,8 +12,9 @@ const routes: Routes = [
     children: [
       { path: '', redirectTo: 'view-forms', pathMatch: 'full' },
       { path: 'view-forms', component: ViewFormsComponent },
-      { path: 'view-forms/view-responses/:formId', component: ViewResponsesComponent },
-      { path: 'create-form', component: CreateFormComponent }
+      { path: 'view-responses/:formId', component: ViewResponsesComponent },
+      { path: 'create-form', component: CreateFormComponent },
+      { path: 'responses/:id', component: ResponsesComponent }
     ]
   }
 ];
