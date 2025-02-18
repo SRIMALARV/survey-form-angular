@@ -1,0 +1,34 @@
+<div class="container">
+    <h2>Form Responses</h2>
+  
+    <div class="summary-container">
+      <p>Total Responses: {{ totalResponses }}</p>
+      <p>Approved: {{ approvedResponses }}</p>
+      <p>Rejected: {{ rejectedResponses }}</p>
+    </div>
+  
+    <!-- <button class="back-btn" (click)="window.history.back()">Back</button> -->
+  
+    <table>
+      <thead>
+        <tr>
+          <th>Response ID</th>
+          <th>View</th>
+          <th>Status</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let response of responses">
+          <td>{{ response.id }}</td>
+          <td><button class="view-btn" >View</button></td>
+          <td>{{ response.status || 'Pending' }}</td>
+          <td>
+            <button class="approve-btn" *ngIf="response.id"  (click)="updateStatus(response.id, 'Approved')">Approve</button>
+            <button class="reject-btn" *ngIf="response.id" (click)="updateStatus(response.id, 'Rejected')">Reject</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+  

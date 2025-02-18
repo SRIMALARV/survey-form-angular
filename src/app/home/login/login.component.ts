@@ -20,8 +20,8 @@ export class LoginComponent {
 
   onLogin(): void {
     const users = [
-      { username: 'admin', password: 'admin123', role: 'admin' },
-      { username: 'user', password: 'user123', role: 'user' }
+      { username: 'a', password: 'aa', role: 'admin' },
+      { username: 'u', password: 'uu', role: 'user' }
     ];
     const user = users.find(u => u.username === this.username && u.password === this.password);
 

@@ -3,6 +3,7 @@
     <div>
         <a routerLink="view-forms">View Forms</a>
         <a routerLink="create-form">Create Forms</a>
+        <a [routerLink]="['view-responses',12]">viewresp</a>
     </div>
     <button class="logout-btn" (click)="logout()">Logout</button>
 </nav>

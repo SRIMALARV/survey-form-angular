@@ -13,6 +13,7 @@ table {
     border-collapse: collapse;
     background-color: #fff;
     box-shadow: 0 4px 8px rgb(212, 237, 251);
+    margin-bottom: 120px;
 }
 
 th,

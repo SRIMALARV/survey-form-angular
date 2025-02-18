@@ -1,1 +1,19 @@
-<p>available-forms works!</p>
+<div *ngIf="isLoading" class="loading-message">
+    Loading forms...
+  </div>
+  
+  <div *ngIf="errorMessage" class="error-message">
+    {{ errorMessage }}
+  </div>
+  
+  <div *ngIf="!isLoading && !errorMessage" class="forms-wrapper">
+    <h2 class="forms-heading">Available Forms</h2>
+    <div id="forms-container" class="forms-container">
+      <div *ngFor="let form of forms" class="form-card" [id]="'form-' + form.id">
+        <h3 class="form-title">{{ form.name }}</h3>
+        <p class="form-question-count">{{ form.questions ? form.questions.length : 0 }} questions</p>
+        <button class="view-button" >View</button>
+      </div>
+    </div>
+  </div>
+  

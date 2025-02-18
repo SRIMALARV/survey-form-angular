@@ -1,3 +1,72 @@
-p {
-    margin: 100px;
+.containerCards {
+    display: block;
+}
+
+h2 {
+    margin-top: 110px;
+    margin-left: 40%;
+}
+
+#forms-container {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 20px;
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.form-card {
+    background-color: #ffffff;
+    border: 1px solid #ccc;
+    border-radius: 0px;
+    text-align: center;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.form-card:nth-child(even) {
+    border-top: 3px solid #1b6b96;
+}
+
+.form-card:nth-child(odd) {
+    border-top: 3px solid #a43848;
+}
+
+.form-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+.form-card h3 {
+    font-size: 1.1rem;
+    color: #333;
+    margin: 0;
+}
+
+.form-card p {
+    font-size: 0.9rem;
+    color: #666;
+    margin: 10px 0 0;
+}
+
+.view-button {
+    display: inline-block;
+    padding: 4px 10px;
+    background-color: white;
+    color: black;
+    text-decoration: none;
+    border: 1.5px solid black;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 0.9rem;
+    margin-top: 10px;
+    transition: background-color 0.2s ease;
+}
+
+.view-button:hover {
+    background-color: #c4c4c4;
 }

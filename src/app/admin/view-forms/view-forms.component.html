@@ -1,1 +1,39 @@
-<p>view-forms works!</p>
+<div>
+    <h1>View Forms</h1>
+    <a [routerLink]="['view-responses',12]">viewresp</a>
+    <table>
+      <thead>
+        <tr>
+          <th>Form Name</th>
+          <th>Status</th>
+          <th>Number of Responses</th>
+          <th>Actions</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let form of forms">
+          <td>{{ form.name }}</td>
+          <td [ngClass]="{ active: form.status === 'active', inactive: form.status !== 'active' }" class="status">
+            {{ form.status === 'active' ? 'Active' : 'Inactive' }}
+          </td>
+          <td>
+            <ng-container *ngIf="form.responseCount !== undefined; else loading">
+              {{ form.responseCount }}
+            </ng-container>
+            <ng-template #loading>Loading...</ng-template>
+          </td>
+          <td>
+            <button [routerLink]="['view-responses',form.id]" class="approve-btn">View</button>
+            <button class="delete" (click)="onDelete(form.id, form.name)" class="reject-btn">Delete</button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  
+    <div class="pagination">
+      <button (click)="onPreviousPage()" [disabled]="currentPage === 0">Previous</button>
+      <span>Page {{ currentPage + 1 }}</span>
+      <button (click)="onNextPage()" [disabled]="currentPage >= totalPages - 1">Next</button>
+    </div>
+  </div>
+  
