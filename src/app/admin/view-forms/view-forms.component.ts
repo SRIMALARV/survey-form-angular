@@ -3,6 +3,7 @@ import { Component } from '@angular/core';
 import Swal, { SweetAlertResult } from 'sweetalert2';  
 import { AdminApiService } from '../admin-api.service';
 import { Router, RouterLink } from '@angular/router'; 
+import { ResponseApiService } from '../response-api.service';
 
 @Component({
   selector: 'app-view-forms',
@@ -18,20 +19,21 @@ export class ViewFormsComponent {
   totalPages: number = 0;
   errorMessage: string = '';
 
-  constructor(private apiService: AdminApiService, private router: Router) {}
+  constructor(private responseApiService: ResponseApiService,
+     private router: Router, private formApiService: AdminApiService) {}
 
   ngOnInit() {
     this.fetchForms();
   }
 
   fetchForms() {
-    this.apiService.getFormsPaginated(this.currentPage, this.pageSize).subscribe(
-      (data: any) => {
+    this.formApiService.getFormsPaginated(this.currentPage, this.pageSize).subscribe({
+      next: (data: any) => {
         this.forms = data.content;
         this.totalPages = data.totalPages;
 
         this.forms.forEach((form) => {
-          this.apiService.getResponsesCount(form.id).subscribe(
+          this.responseApiService.getResponsesCount(form.id).subscribe(
             (count) => {
               form.responseCount = count; 
             },
@@ -41,14 +43,14 @@ export class ViewFormsComponent {
           );
         });
       },
-      (error) => {
+      error: (error) => {
         this.errorMessage = 'Failed to load forms.';
       }
-    );
+  });
   }
 
   fetchResponsesCount(formId: string) {
-    return this.apiService.getResponsesCount(formId);
+    return this.responseApiService.getResponsesCount(formId);
   }
 
   onViewResponses(formId: string): void {
@@ -67,7 +69,7 @@ export class ViewFormsComponent {
       confirmButtonText: 'Yes, deactivate it!'
     }).then((result: SweetAlertResult) => { 
       if (result.isConfirmed) {
-        this.apiService.deactivateForm(formId).subscribe(
+        this.formApiService.deactivateForm(formId).subscribe(
           () => {
             this.fetchForms();  
             Swal.fire('Deactivated!', 'The form has been deactivated.', 'success');

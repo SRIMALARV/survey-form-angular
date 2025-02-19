@@ -8,7 +8,7 @@ import { RoleManagerService } from '../../home/role-manager.service';
 @Component({
   selector: 'app-admin-dashboard',
   standalone: true,
-  imports: [RouterOutlet, AdminNavbarComponent, ViewFormsComponent],
+  imports: [RouterOutlet, AdminNavbarComponent],
   templateUrl: './admin-dashboard.component.html',
   styleUrl: './admin-dashboard.component.css'
 })

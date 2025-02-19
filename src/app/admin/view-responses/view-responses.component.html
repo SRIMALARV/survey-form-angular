@@ -1,14 +1,11 @@
 <div class="container">
-    <h2>Form Responses</h2>
-  
+    <h2>{{formName}} - Form Responses</h2>
     <div class="summary-container">
       <p>Total Responses: {{ totalResponses }}</p>
       <p>Approved: {{ approvedResponses }}</p>
       <p>Rejected: {{ rejectedResponses }}</p>
     </div>
-  
     <button class="back-btn" (click)="goBack()">Back</button>
-  
     <table>
       <thead>
         <tr>

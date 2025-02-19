@@ -4,6 +4,7 @@ import { Response } from '../../models/Response.model';  // Import the model
 import Swal from 'sweetalert2';
 import { AdminApiService } from '../admin-api.service';
 import { CommonModule, Location, NgIf } from '@angular/common';
+import { ResponseApiService } from '../response-api.service';
 
 @Component({
   selector: 'app-responses',
@@ -17,7 +18,7 @@ export class ResponsesComponent implements OnInit {
   responseData: Response | null = null; 
 
   constructor(
-    private route: ActivatedRoute, private apiService: AdminApiService,
+    private route: ActivatedRoute, private apiService: ResponseApiService,
     private router: Router, private location: Location) {}
 
   ngOnInit(): void {

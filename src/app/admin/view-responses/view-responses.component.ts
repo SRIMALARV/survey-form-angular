@@ -1,9 +1,11 @@
 import { Component } from '@angular/core';
 import { ActivatedRoute, RouterLink } from '@angular/router';
-import { AdminApiService } from '../admin-api.service';
 import Swal from 'sweetalert2';  
 import { Response } from '../../models/Response.model';
 import { CommonModule, Location } from '@angular/common';
+import { ResponseApiService } from '../response-api.service';
+import { AdminApiService } from '../admin-api.service';
+import { Form } from '../../models/Form.model';
 
 @Component({
   selector: 'app-view-responses',
@@ -18,35 +20,44 @@ export class ViewResponsesComponent {
   totalResponses = 0;
   approvedResponses = 0;
   rejectedResponses = 0;
+  formName: string ='';
 
-  constructor(private route: ActivatedRoute, private apiService: AdminApiService, private location:Location) {}
+  constructor(private route: ActivatedRoute, private apiService: ResponseApiService, 
+    private location:Location,private formApiService: AdminApiService  ) {}
 
   goBack(): void {
     this.location.back();
   }
 
   ngOnInit(): void {
-    this.route.paramMap.subscribe(params => {
+    this.route.paramMap.subscribe({
+      next: params => {
       this.formId = params.get('formId') as string; 
       this.loadResponses();
-    });
+    }
+  });
+  this.formApiService.getForms(this.formId).subscribe({
+    next: (data: Form) => {
+      this.formName = data.name;
+    }
+  });
   }
-
+  
   loadResponses(): void {
     if (!this.formId) {
       console.error('Form ID is missing');
       return;
     }
 
-    this.apiService.getResponses(this.formId).subscribe(
-      (data: Response[]) => {
+    this.apiService.getResponses(this.formId).subscribe({
+      next: (data: Response[]) => {
         this.responses = data;
         this.totalResponses = data.length;
-        this.approvedResponses = data.filter(r => r.status === 'Approved').length;
-        this.rejectedResponses = data.filter(r => r.status === 'Rejected').length;
+        this.approvedResponses = data.filter(resp => resp.status === 'Approved').length;
+        this.rejectedResponses = data.filter(resp => resp.status === 'Rejected').length;
       },
-      (error) => console.error('Error fetching responses:', error)
-    );
+      error: () => console.error('Error fetching responses')
+  });
   }
 
   updateStatus(responseId: string, newStatus: string): void {

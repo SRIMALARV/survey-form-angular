@@ -5,7 +5,7 @@ import { RouterOutlet } from '@angular/router';
 @Component({
   selector: 'app-user-dashboard',
   standalone: true,
-  imports: [RouterOutlet,UserNavbarComponent],
+  imports: [RouterOutlet, UserNavbarComponent],
   templateUrl: './user-dashboard.component.html',
   styleUrl: './user-dashboard.component.css'
 })

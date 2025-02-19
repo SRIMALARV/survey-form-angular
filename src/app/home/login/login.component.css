@@ -47,3 +47,24 @@
 .login-body {
     background-color: #0b243d;
 }
+
+.input-container {
+    position: relative;
+    display: flex;
+    align-items: center;
+  }
+  
+  .input-icon {
+    position: absolute;
+    left: 10px; /* Adjust spacing */
+    color: #363b50;
+  }
+  
+  input {
+    width: 100%;
+    padding: 10px 10px 10px 35px; 
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+  }
+  

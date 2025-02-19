@@ -1,9 +1,29 @@
 <div class="login-body">
-<div class="login-container">
-  <h2>Login</h2>
-  <input type="text" id="username" [(ngModel)]="username" placeholder="Username" />
-  <input type="password" id="password" [(ngModel)]="password" placeholder="Password" />
-  <button id="loginBtn" (click)="onLogin()">Login</button>
-  <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+  <div class="login-container">
+    <h2>Login</h2>
+    <p *ngIf="errorMessage" style="color: red;"> {{ errorMessage }} </p>
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="input-container">
+      <input type="text" placeholder="Username" formControlName="username" id="username">
+      </div>
+      <div class="input-container">
+      <input type="password" placeholder="Password" formControlName="password" id="password">
+      </div>
+      <button type="submit" id="loginBtn" [disabled]="loginForm.invalid"> Login </button>
+    </form>
+  </div>
 </div>
-</div>
+
+<!-- <div class="login-body">
+  <div class="login-container">
+    <h2>Login</h2>
+    
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <input type="text" formControlName="username" placeholder="Username" />
+      <input type="password" formControlName="password" placeholder="Password" />
+      <button type="submit" [disabled]="loginForm.invalid">Login</button>
+    </form>
+
+    <p *ngIf="errorMessage" style="color: red;">{{ errorMessage }}</p>
+  </div>
+</div> -->

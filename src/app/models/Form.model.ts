@@ -1,10 +1,10 @@
 export interface Form {
     id?: string;
     name: string;
-    status?: string; // Default is "active"
+    status?: string; 
     questions: {
       questionText: string;
-      type: string; // text, number, checkbox, etc.
+      type: string; 
       validations?: {
         required?: boolean;
         minLength?: number;
@@ -12,6 +12,7 @@ export interface Form {
         minValue?: number;
         maxValue?: number;
         options?: string[];
+        allowedFormats?: string[];
       };
     }[];
   }
