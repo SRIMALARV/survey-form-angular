@@ -1,1 +1,42 @@
-<p>create-form works!</p>
+<div class="form-container">
+    <h2>Create Form</h2>
+    <form [formGroup]= "formBuilderForm">
+    <div id="form-name-box">
+    <label>Form Name:</label>
+    <input type="text" formControlName="formName" placeholder="Enter form name">
+    </div>  
+    <p *ngIf="formBuilderForm.get('formName')?.invalid && formBuilderForm.get('formName')?.touched" class="error">
+      Form name must be between 5 to 50 characters!
+    </p>
+  
+    <div formArrayName="questions" id="form-builder">
+      <div *ngFor="let question of questions.controls; let i = index" [formGroupName]="i" class="question-box">
+        <h3>Question {{ i + 1 }}</h3>
+        
+        <label>Question Text:</label>
+        <input type="text" formControlName="questionText" placeholder="Enter question">
+  
+        <label>Question Type:</label>
+        <select formControlName="questionType">
+          <option value="text">Text</option>
+          <option value="number">Number</option>
+          <option value="checkbox">Checkbox</option>
+          <option value="dropdown">Dropdown</option>
+          <option value="radio">Radio</option>
+          <option value="file">File Upload</option>
+        </select>
+  
+        <button type="button" (click)="removeQuestion(i)" class="remove-icon">
+            <img src="trash.png" alt="Delete" class="icon">
+          </button>          
+      </div>
+    </div>
+  
+    <!-- Add Question Button -->
+    <button type="button" (click)="addQuestion()" id="add-question">+</button>
+  
+    <!-- Submit Button -->
+    <button type="button" (click)="submitForm()" class="submit-button">Submit Form</button>
+</form>
+  </div>
+  

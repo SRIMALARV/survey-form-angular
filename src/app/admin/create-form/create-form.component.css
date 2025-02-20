@@ -1,3 +1,266 @@
-p {
-    margin: 100px;
+.form-container {
+    display: block;
+    width: 50%;
+    margin: 100px auto;
+    text-align: center;
+
 }
+
+#form-name-box {
+    display: flex;
+}
+
+#form-name-label {
+    padding-top: 5px;
+    padding-right: 5px;;
+}
+
+#form-builder {
+    margin: 20px auto;
+    background: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgb(255, 255, 255);
+}
+
+#form-name-error {
+    justify-content: left;
+}
+
+input[type="checkbox" i] {
+    background-color: black;
+    cursor: pointer;
+    box-sizing: border-box;
+    margin: 0;
+    align-items: start;
+    justify-content: left;
+
+}
+
+h1 {
+    text-align: center;
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+label {
+    display: flex;
+    justify-content: flex-start;
+    font-size: 0.9rem;
+    margin: 5px 0;
+    color: #333;
+}
+
+#form-name {
+    box-shadow: 5px 5px 15px rgb(175, 212, 232);
+    display: flex;
+    justify-content: flex-start;
+}
+
+input,
+select {
+    width: 80%;
+    padding: 10px;
+    margin-bottom: 15px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+    cursor: pointer;
+    font-family: 'Poppins', sans-serif;
+}
+
+.validation-options {
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+    align-items: flex-start;
+    width: 100%;
+    transform-origin: left;
+    animation: expandWidth 0.5s ease-in-out;
+}
+
+.validation-options input[type="checkbox"] {
+    width: 5%;
+    height: 15px;
+    margin-top: 5px;
+    margin-left: 20px;
+}
+
+input:focus {
+    border-color: #007bff;
+    outline: none;
+}
+
+.submit-button {
+    padding: 10px 15px;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    background-color: #0083d8;
+    color: white;
+    transition: background-color 0.3s ease;
+}
+
+.question-content span {
+    margin-top: 8px;
+    margin-right: 2.5px;
+}
+
+#add-question {
+    padding: 5px 15px;
+    background-color: #3f4346;
+    font-size: 1.5rem;
+    border-radius: 25px;
+    margin: 15px 15px;
+    font-weight: bold;
+    color: white;
+}
+
+#add-question:hover {
+    border-radius: 25px;
+    justify-content: space-evenly;
+}
+
+#add-question:hover::after {
+    content: " Add Question";
+    font-size: 16px;
+    padding: 5px 10px;
+}
+
+.submit-button:hover {
+    background-color: #0056b3;
+}
+
+#questions-container {
+    margin: 15px auto;
+    padding: 10px;
+    background: #f1f1f1;
+    border-radius: 5px;
+    background: linear-gradient(to bottom, #e4f4fd, #ffffff);
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+    box-shadow: 5px 5px 15px rgb(175, 212, 232);
+}
+
+.button-container {
+    display: flex;
+    margin-top: 10px;
+    justify-content: flex-start;
+}
+
+.question-config {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 10px;
+}
+
+.question-config label {
+    margin-right: 5px;
+}
+
+.configure-validations {
+    width: 100%;
+}
+
+.question-content {
+    flex-grow: 1;
+}
+
+.question-actions {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    align-items: center;
+}
+
+.question-actions button {
+    border: none;
+    background: none;
+    cursor: pointer;
+    padding: 5px;
+    border-radius: 50%;
+    transition: background-color 0.2s;
+}
+
+.question-actions button:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}
+
+.icon-button {
+    width: 24px;
+    height: 24px;
+    display: block;
+}
+
+.validation-label {
+    text-align: left;
+    width: 100%;
+    display: block;  
+    margin-bottom: 5px; 
+}
+
+.options-container {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.hidden-input {
+    display: none;
+}
+
+.option-wrapper {
+    display: flex;
+    align-items: flex-start;
+    width: 100%;
+    gap: 8px;
+    margin-top: 5px;
+}
+
+.option-input {
+    width: 100%;
+    padding: 5px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+}
+
+.add-btn,
+.remove-btn {
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.add-icon,
+.remove-icon {
+    width: 30px;
+    height: 30px;
+}
+
+.remove-btn {
+    margin-top: 5px;
+}
+.remove-icon {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+  }
+  
+  .remove-icon img {
+    width: 30px;  
+    height: 30px;
+  }
+  
