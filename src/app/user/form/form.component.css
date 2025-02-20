@@ -1,8 +1,6 @@
-.containerForm {
-    margin: 100px;
-}
+
 #dynamicForm {
-    margin: 100px;
+    margin: 120px auto;
 }
 
 form {
@@ -108,4 +106,19 @@ input[type="file"]::-webkit-file-upload-button {
 
 input[type="file"]::-webkit-file-upload-button:hover {
     background-color: #aec5d3;
+}
+
+.back-btn {
+    position: absolute;
+    left: 10px;
+    top: 130px;
+}
+
+.back-btn {
+    margin-left: 5px;
+    background-color: black;
+    border-radius: 0;
+    color: white;
+    padding: 5px 10px;
+    font-family: 'Poppins', sans-serif;
 }

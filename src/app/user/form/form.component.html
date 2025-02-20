@@ -1,3 +1,51 @@
-<div class="containerForm" *ngIf="formData" id="dynamicForm">
-    {{formData.name}}
-</div>
+<div *ngIf="isLoading">
+    <p>Loading form...</p>
+  </div>
+  
+  <div *ngIf="!isLoading && formDetails">  
+    <form [formGroup]="dynamicForm" (ngSubmit)="submitForm()" id="dynamicForm">
+        <h2>{{ formDetails.name }}</h2>
+      <div formArrayName="responses">
+        <div *ngFor="let question of formDetails.questions; let i = index" class="form-group">
+          <label>{{ i + 1 }}. <strong>{{ question.questionText }}</strong></label>
+  
+          <ng-container [ngSwitch]="question.type">
+            <input *ngSwitchCase="'text'" type="text" class="form-control" [formControlName]="i.toString()" />
+            <input *ngSwitchCase="'number'" type="number" class="form-control" [formControlName]="i.toString()" />
+            <select *ngSwitchCase="'select'" class="form-control" [formControlName]="i.toString()">
+              <option *ngFor="let option of question.validations?.options" [value]="option">{{ option }}</option>
+            </select>
+  
+            <div *ngSwitchCase="'radio'">
+              <label *ngFor="let option of question.validations?.options">
+                <input type="radio" [formControlName]="i.toString()" [value]="option.toString()" /> {{ option }}
+              </label>
+            </div>
+  
+            <div *ngSwitchCase="'checkbox'">
+              <label *ngFor="let option of question.validations?.options">
+                <input type="checkbox" [formControlName]="i.toString()" /> {{ option }}
+              </label>
+            </div>
+            <select *ngSwitchCase="'select'" class="form-control" [formControlName]="i.toString()">
+                <option *ngFor="let option of question.validations?.options || []" [value]="option">
+                  {{ option }}
+                </option>
+              </select>              
+        
+          </ng-container>
+  
+          <div *ngIf="isInvalid(i, 'required')" class="error">This field is required</div>
+          <div *ngIf="isInvalid(i, 'minlength')" class="error">Minimum length required</div>
+          <div *ngIf="isInvalid(i, 'maxlength')" class="error">Maximum length exceeded</div>
+          <div *ngIf="isInvalid(i, 'min')" class="error">Value too low</div>
+          <div *ngIf="isInvalid(i, 'max')" class="error">Value too high</div>
+        </div>
+      </div>
+  
+      <button type="submit" [disabled]="dynamicForm.invalid" class="submit-btn">Submit</button>
+    </form>
+  
+    <button class="back-btn" (click)="goBack()">Back</button>
+  </div>
+  
