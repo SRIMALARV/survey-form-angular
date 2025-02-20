@@ -29,17 +29,10 @@ export class CreateFormComponent {
       questionText: ['', Validators.required],
       questionType: ['text', Validators.required],
       validations: this.fb.group({
-        required: [false],
-        minLength: [''],
-        maxLength: [''],
-        minValue: [''],
-        maxValue: [''],
-        options: [''],
-        allowedFormats: [''],
-        maxSize: ['']
+        required: [false], minLength: [''], maxLength: [''], minValue: [''],
+        maxValue: [''], options: [''], allowedFormats: [''], maxSize: ['']
       })
     });
-
     this.questions.push(questionForm);
   }
 
@@ -66,11 +59,5 @@ export class CreateFormComponent {
 
     const formData = this.formBuilderForm.value;
     console.log('Form Data:', formData);
-
-    // TODO: Replace with your actual API call
-    // this.http.post('API_URL/forms', formData).subscribe(
-    //   response => Swal.fire('Success!', 'Form saved successfully!', 'success'),
-    //   error => Swal.fire('Error!', 'Failed to save form!', 'error')
-    // );
   }
 }
