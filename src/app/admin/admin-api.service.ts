@@ -25,4 +25,8 @@ export class AdminApiService {
     return this.http.get<Form>(`${this.API_BASE_URL}/api/forms/${formId}`);
   }
 
+  submitForm(formData:Form): Observable<Form> {
+    return this.http.post<Form>(`${this.API_BASE_URL}/api/forms`, formData);
+  }
+
 }

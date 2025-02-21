@@ -3,7 +3,6 @@
     width: 50%;
     margin: 100px auto;
     text-align: center;
-
 }
 
 #form-name-box {
@@ -23,8 +22,9 @@
     box-shadow: 0 2px 4px rgb(255, 255, 255);
 }
 
-#form-name-error {
-    justify-content: left;
+.error {
+    color: red;
+    justify-content: start;
 }
 
 input[type="checkbox" i] {
@@ -37,9 +37,10 @@ input[type="checkbox" i] {
 
 }
 
-h1 {
+h2 {
     text-align: center;
     font-size: 1.5rem;
+    margin-top: 120px;
     margin-bottom: 20px;
     color: #333;
 }
@@ -78,15 +79,16 @@ select {
     align-items: flex-start;
     width: 100%;
     transform-origin: left;
-    animation: expandWidth 0.5s ease-in-out;
 }
 
 .validation-options input[type="checkbox"] {
-    width: 5%;
+    width: 20%;
     height: 15px;
     margin-top: 5px;
     margin-left: 20px;
 }
+
+
 
 input:focus {
     border-color: #007bff;
@@ -243,7 +245,7 @@ input:focus {
     cursor: pointer;
 }
 
-.add-icon,
+.config-icon,
 .remove-icon {
     width: 30px;
     height: 30px;
@@ -252,14 +254,14 @@ input:focus {
 .remove-btn {
     margin-top: 5px;
 }
-.remove-icon {
+.remove-icon, .config-icon {
     background: none;
     border: none;
     padding: 0;
     cursor: pointer;
   }
   
-  .remove-icon img {
+  .remove-icon img, .config-icon img {
     width: 30px;  
     height: 30px;
   }

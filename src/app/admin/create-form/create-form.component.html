@@ -1,5 +1,5 @@
 <div class="form-container">
-  <h2>Create Form</h2>
+  <h3>Create Form</h3>
   <form [formGroup]="formBuilderForm">
     <div id="form-name-box">
       <label>Form Name:</label>
@@ -8,27 +8,72 @@
     <p *ngIf="formBuilderForm.get('formName')?.invalid && formBuilderForm.get('formName')?.touched" class="error">
       Form name must be between 5 to 50 characters!
     </p>
-
     <div formArrayName="questions" id="form-builder">
-      <div *ngFor="let question of questions.controls; let i = index" [formGroupName]="i" class="question-box">
-        <h3>Question {{ i + 1 }}</h3>
+      <div *ngFor="let question of questions.controls; let i = index" [formGroupName]="i" class="question-config">
+        <div class="question-content">
+          <h4>Question {{ i + 1 }}</h4>
 
-        <label>Question Text:</label>
-        <input type="text" formControlName="questionText" placeholder="Enter question">
-
-        <label>Question Type:</label>
-        <select formControlName="questionType">
-          <option value="text">Text</option>
-          <option value="number">Number</option>
-          <option value="checkbox">Checkbox</option>
-          <option value="dropdown">Dropdown</option>
-          <option value="radio">Radio</option>
-          <option value="file">File Upload</option>
-        </select>
-
-        <button type="button" (click)="removeQuestion(i)" class="remove-icon">
-          <img src="trash.png" alt="Delete" class="icon">
-        </button>
+          <label>Question Text:</label>
+          <input type="text" formControlName="questionText" placeholder="Enter question">
+          <label>Question Type:</label>
+          <select formControlName="questionType">
+            <option value="" disabled>Select an option</option>
+            <option value="text">Text</option>
+            <option value="number">Number</option>
+            <option value="checkbox">Checkbox</option>
+            <option value="dropdown">Dropdown</option>
+            <option value="radio">Radio</option>
+            <option value="file">File Upload</option>
+          </select>
+          <div *ngIf="showProperties && questions.at(i).get('questionType')?.value" class="validation-options">
+            <label>
+              Required:
+              <input type="checkbox" [formControl]="getValidationControl(selectedIndex, 'required')" class="checkbox">
+            </label>
+            <div *ngIf="questions.at(i).get('questionType')?.value === 'text'" class="validation-options">
+              <label style="width: 100%;">Min Length:
+                <input type="number" [formControl]="getValidationControl(i, 'minLength')"
+                  placeholder="Min Length"></label>
+              <label style="width: 100%;">Max Length:
+                <input type="number" [formControl]="getValidationControl(i, 'maxLength')"
+                  placeholder="Max Length"></label>
+            </div>
+            <div *ngIf="questions.at(i).get('questionType')?.value === 'number'" class="validation-options">
+              <label style="width: 100%;">Min Value:
+                <input type="number" [formControl]="getValidationControl(i, 'minValue')"
+                  placeholder="Min Value"></label>
+              <label style="width: 100%;">Max Value:
+                <input type="number" [formControl]="getValidationControl(i, 'maxValue')"
+                  placeholder="Max Value"></label>
+            </div>
+            <div *ngIf="questions.at(i).get('questionType')?.value === 'checkbox' ||
+            questions.at(i).get('questionType')?.value === 'radio' ||
+            questions.at(i).get('questionType')?.value === 'dropdown'" class="option-list">
+              <label>Options:</label>
+              <div formGroupName="validations">
+                <div formArrayName="options">
+                  <div *ngFor="let option of getOptionsArray(i).controls; let j = index">
+                    <input type="text" [formControlName]="j" placeholder="Enter option">
+                    <button type="button" (click)="removeOption(i, j)" class="remove-icon">
+                      <img src="cross.png" alt="remove-option" title="remove-option">
+                    </button>
+                  </div>
+                </div>
+              </div>
+              <button type="button" (click)="addOption(i)" class="remove-icon">
+                <img src="add.png" alt="add-option" title="add-option">
+              </button>
+            </div>
+          </div>
+        </div>
+        <div class="question-actions">
+          <button type="button" class="config-icon" (click)="addValidation(i)">
+            <img src="settings.png" alt="Properties" title="Properties">
+          </button>
+          <button type="button" (click)="removeQuestion(i)" class="remove-icon">
+            <img src="trash.png" alt="Delete" title="Delete Question">
+          </button>
+        </div>
       </div>
     </div>
     <button type="button" (click)="addQuestion()" id="add-question">+</button>

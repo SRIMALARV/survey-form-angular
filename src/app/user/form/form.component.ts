@@ -1,11 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
+import { Component } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
+import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, ValidatorFn } from '@angular/forms';
 import { UserApiService } from '../user-api.service';
 import { Form } from '../../models/Form.model';
 import { CommonModule, Location } from '@angular/common';
 import Swal from 'sweetalert2';  
-import { error } from 'console';
 
 
 @Component({
@@ -44,7 +43,7 @@ export class FormComponent {
   }
 
   createFormControl(question: any) {
-    let validators = [];
+    let validators:ValidatorFn[] = [];
     if (question.validations?.required) validators.push(Validators.required);
     if (question.validations?.minLength) validators.push(Validators.minLength(question.validations.minLength));
     if (question.validations?.maxLength) validators.push(Validators.maxLength(question.validations.maxLength));
